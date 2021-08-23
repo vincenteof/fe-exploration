@@ -1,3 +1,5 @@
+import multiply from './multiply'
+
 export default function area(side) {
-  return side * side
+  return multiply(side, side)
 }
