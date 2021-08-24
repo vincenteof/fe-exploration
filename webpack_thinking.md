@@ -7,3 +7,4 @@ optimization: {
   }
 ```
 后 `import` 的代码也出现了 runtime，不然会被优化掉？
+输出格式跟 `output.library.type` 也有关，如果不设默认是什么格式？
