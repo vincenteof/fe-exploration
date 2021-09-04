@@ -1,6 +1,6 @@
 {
-  "name": "building-exploration-example",
-  "version": "0.0.1",
+  "name": "@exploration/example",
+  "version": "1.0.0",
   "description": "try all sorts of building tools",
   "main": "index.js",
   "license": "MIT",
@@ -19,7 +19,8 @@
     "rollup": "^2.56.3",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.0.0"
+    "webpack-dev-server": "^4.0.0",
+    "@explore/my-webpack": "^1.0.0"
   },
   "dependencies": {}
 }

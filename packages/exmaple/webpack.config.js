@@ -5,9 +5,6 @@ module.exports = {
   entry: { index: path.resolve(__dirname, 'src', 'index.js') },
   output: {
     path: path.resolve(__dirname, 'build'),
-    library: {
-      type: 'var'
-    }
   },
   plugins: [
     new HtmlWebpackPlugin({
