@@ -1,0 +1,26 @@
+{
+  "name": "@exploration/example",
+  "version": "1.0.0",
+  "description": "try all sorts of building tools",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "webpack:build": "webpack --mode production",
+    "rollup:build": "rollup --config"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-html": "^0.2.3",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^5.3.2",
+    "rollup": "^2.56.3",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0",
+    "@explore/my-webpack": "^1.0.0"
+  },
+  "dependencies": {}
+}
