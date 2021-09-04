@@ -1,0 +1,11 @@
+{
+  "name": "@explore/my-webpack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "vincenteof",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/traverse": "^7.15.4"
+  }
+}
