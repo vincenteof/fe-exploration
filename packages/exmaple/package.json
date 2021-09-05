@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "webpack:build": "webpack --mode production",
-    "rollup:build": "rollup --config"
+    "rollup:build": "rollup --config",
+    "mywebpack:build": "mywebpack ./src/index.js ./build"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

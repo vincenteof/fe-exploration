@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import { writeFileSync } from 'fs'
+import { join } from 'path'
 import createModule from './Module'
 
 function createDependencyGraph(entry) {
@@ -55,12 +55,12 @@ function bundle(graph) {
   return [{ name: 'bundle.js', content: bundledCode }]
 }
 
-function build({ entry, outputFolder }) {
+function build({ entry, outputFolder = '.' }) {
   const graph = createDependencyGraph(entry)
   const assets = build(graph)
   for (let asset of assets) {
-    fs.writeFileSync(
-      path.join(outputFolder, asset.name),
+    writeFileSync(
+      join(outputFolder, asset.name),
       asset.content,
       'utf-8'
     )
