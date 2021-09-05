@@ -1,17 +1,21 @@
 {
   "name": "@explore/my-webpack",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "module": "./src/index.js",
   "author": "vincenteof",
   "license": "MIT",
   "scripts": {
-    "build": ""
+    "build": "babel src --out-dir lib --presets=@babel/preset-env"
   },
   "dependencies": {
     "@babel/core": "^7.15.5",
     "@babel/traverse": "^7.15.4"
   },
   "bin": {
-    "mywebpack": "./cli.js"
+    "mywebpack": "./lib/cli.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.4"
   }
 }
