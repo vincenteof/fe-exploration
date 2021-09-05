@@ -755,7 +755,7 @@
     "@babel/helper-create-regexp-features-plugin" "^7.14.5"
     "@babel/helper-plugin-utils" "^7.14.5"
 
-"@babel/preset-env@^7.15.0":
+"@babel/preset-env@^7.15.0", "@babel/preset-env@^7.15.4":
   version "7.15.4"
   resolved "https://registry.nlark.com/@babel/preset-env/download/@babel/preset-env-7.15.4.tgz?cache=0&sync_timestamp=1630618873703&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fpreset-env%2Fdownload%2F%40babel%2Fpreset-env-7.15.4.tgz#197e7f99a755c488f0af411af179cbd10de6e815"
   integrity sha1-GX5/madVxIjwr0Ea8XnL0Q3m6BU=
