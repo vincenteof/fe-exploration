@@ -5,7 +5,10 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "lerna run build",
     "test": "lerna run test",
+    "bootstrap": "lerna bootstrap",
+    "link-all": "lerna link --force-local",
     "new-version": "lerna version --conventional-commits --yes",
     "diff": "lerna diff"
   },

@@ -1,15 +1,16 @@
 import { readFileSync } from 'fs'
 import { join, dirname } from 'path'
-import babel from '@babel/core'
+import { parseSync, transformFromAst } from '@babel/core'
 import traverse from '@babel/traverse'
 
 class Module {
   constructor(filePath) {
     this.filePath = filePath
+    console.log('filePath: ', filePath)
     this.content = readFileSync(filePath, 'utf-8')
-    this.ast = babel.parseSync(this.content)
+    this.ast = parseSync(this.content)
     this.dependencies = this.findDependencies()
-    this.code = babel.transformFromAst(this.ast, null, {
+    this.code = transformFromAst(this.ast, null, {
       presets: ['env'],
     })
   }

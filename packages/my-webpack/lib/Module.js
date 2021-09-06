@@ -9,7 +9,7 @@ var _fs = require("fs");
 
 var _path = require("path");
 
-var _core = _interopRequireDefault(require("@babel/core"));
+var _core = require("@babel/core");
 
 var _traverse = _interopRequireDefault(require("@babel/traverse"));
 
@@ -26,10 +26,11 @@ var Module = /*#__PURE__*/function () {
     _classCallCheck(this, Module);
 
     this.filePath = filePath;
+    console.log('filePath: ', filePath);
     this.content = (0, _fs.readFileSync)(filePath, 'utf-8');
-    this.ast = _core["default"].parseSync(this.content);
+    this.ast = (0, _core.parseSync)(this.content);
     this.dependencies = this.findDependencies();
-    this.code = _core["default"].transformFromAst(this.ast, null, {
+    this.code = (0, _core.transformFromAst)(this.ast, null, {
       presets: ['env']
     });
   }
