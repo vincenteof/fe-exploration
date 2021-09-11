@@ -11,6 +11,8 @@ var _path = require("path");
 
 var _Module = _interopRequireDefault(require("./Module"));
 
+var _utils = require("./utils");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -67,7 +69,7 @@ function createModuleMap(modules) {
 }
 
 function addRuntime(moduleMap, entry) {
-  return "\n  const modules = ".concat(moduleMap, ";\n  const entry = \"").concat(entry, "\";\n  function start({ modules, entry }) {\n    const moduleCache = {};\n    const require = moduleName => {\n      if (moduleCache[moduleName]) {\n        return moduleCache[moduleName];\n      }\n      const exports = {};\n      moduleCache[moduleName] = exports;\n      modules[moduleName](exports, require);\n      return moduleCache[moduleName];\n    }\n    require(entry)\n  }\n  start(entry)\n  ");
+  return "\n  const modules = ".concat(moduleMap, ";\n  const entry = \"").concat(entry, "\";\n  function start({ modules, entry }) {\n    const moduleCache = {};\n    const require = moduleName => {\n      if (moduleCache[moduleName]) {\n        return moduleCache[moduleName];\n      }\n      const exports = {};\n      moduleCache[moduleName] = exports;\n      modules[moduleName](exports, require);\n      return moduleCache[moduleName];\n    }\n    require(entry);\n  }\n  start(entry);\n  ");
 }
 
 function bundle(graph) {
@@ -85,7 +87,8 @@ function build(_ref) {
       _ref$outputFolder = _ref.outputFolder,
       outputFolder = _ref$outputFolder === void 0 ? '.' : _ref$outputFolder;
   var graph = createDependencyGraph(entry);
-  var assets = build(graph);
+  var assets = bundle(graph);
+  (0, _utils.ensureDirectoryExistence)(outputFolder);
 
   var _iterator2 = _createForOfIteratorHelper(assets),
       _step2;

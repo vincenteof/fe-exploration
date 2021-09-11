@@ -24,7 +24,6 @@ var _process$argv = _toArray(process.argv),
 
 var entry = args[0];
 var outputFolder = args[1];
-console.log('process.argv: ', process.argv);
 console.log('input entry: ', entry);
 console.log('outputFolder: ', outputFolder);
 

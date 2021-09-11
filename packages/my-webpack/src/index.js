@@ -1,6 +1,7 @@
 import { writeFileSync } from 'fs'
 import { join } from 'path'
 import createModule from './Module'
+import { ensureDirectoryExistence } from './utils'
 
 function createDependencyGraph(entry) {
   return createModule(entry)
@@ -42,9 +43,9 @@ function addRuntime(moduleMap, entry) {
       modules[moduleName](exports, require);
       return moduleCache[moduleName];
     }
-    require(entry)
+    require(entry);
   }
-  start(entry)
+  start(entry);
   `
 }
 
@@ -57,7 +58,8 @@ function bundle(graph) {
 
 function build({ entry, outputFolder = '.' }) {
   const graph = createDependencyGraph(entry)
-  const assets = build(graph)
+  const assets = bundle(graph)
+  ensureDirectoryExistence(outputFolder)
   for (let asset of assets) {
     writeFileSync(
       join(outputFolder, asset.name),

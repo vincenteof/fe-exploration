@@ -26,12 +26,11 @@ var Module = /*#__PURE__*/function () {
     _classCallCheck(this, Module);
 
     this.filePath = filePath;
-    console.log('filePath: ', filePath);
     this.content = (0, _fs.readFileSync)(filePath, 'utf-8');
     this.ast = (0, _core.parseSync)(this.content);
     this.dependencies = this.findDependencies();
     this.code = (0, _core.transformFromAst)(this.ast, null, {
-      presets: ['env']
+      presets: ["@babel/preset-env"]
     });
   }
 
@@ -48,6 +47,7 @@ var Module = /*#__PURE__*/function () {
           dependencies.push(createModule(absolutePath));
         }
       });
+      return dependencies;
     }
   }]);
 
