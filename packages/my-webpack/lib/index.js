@@ -56,7 +56,7 @@ function createModuleMap(modules) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var module = _step.value;
-      modules += "\"".concat(module.filePath, "\": function (exports, require) { ").concat(module.code, " },");
+      moduleMap += "\"".concat(module.filePath, "\": function (exports, require) { ").concat(module.code, " },");
     }
   } catch (err) {
     _iterator.e(err);

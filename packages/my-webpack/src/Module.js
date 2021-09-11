@@ -9,9 +9,11 @@ class Module {
     this.content = readFileSync(filePath, 'utf-8')
     this.ast = parseSync(this.content)
     this.dependencies = this.findDependencies()
-    this.code = transformFromAst(this.ast, null, {
+    const { code, ast } = transformFromAst(this.ast, null, {
       presets: ["@babel/preset-env"],
     })
+    this.code = code
+    this.ast = ast
   }
 
   findDependencies() {

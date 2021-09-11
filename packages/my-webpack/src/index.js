@@ -22,7 +22,7 @@ function createModuleMap(modules) {
   let moduleMap = ''
   moduleMap += '{'
   for (let module of modules) {
-    modules += `"${module.filePath}": function (exports, require) { ${module.code} },`
+    moduleMap += `"${module.filePath}": function (exports, require) { ${module.code} },`
   }
   moduleMap += '}'
   return moduleMap
