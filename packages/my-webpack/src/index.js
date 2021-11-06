@@ -45,7 +45,7 @@ function addRuntime(moduleMap, entry) {
     }
     require(entry);
   }
-  start(entry);
+  start({ modules, entry });
   `
 }
 
