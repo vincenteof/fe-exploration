@@ -22,37 +22,37 @@ function createModuleMap(modules) {
   let moduleMap = ''
   moduleMap += '{'
   for (let module of modules) {
-    moduleMap += `"${module.filePath}": function (exports, require) { ${module.code} },`
+    moduleMap += `"${module.id}": [
+      function (require, module, exports) { ${module.code} },
+      ${JSON.stringify(module.mapping)}
+    ],`
   }
   moduleMap += '}'
   return moduleMap
 }
 
-function addRuntime(moduleMap, entry) {
+
+function genCode(moduleMap) {
   return `
-  const modules = ${moduleMap};
-  const entry = "${entry}";
-  function start({ modules, entry }) {
-    const moduleCache = {};
-    const require = moduleName => {
-      if (moduleCache[moduleName]) {
-        return moduleCache[moduleName];
+  (function(moduleMap) {
+    function require(id) {
+      const [fn, mapping] = moduleMap[id];
+      function localRequire(name) {
+        return require(mapping[name])
       }
-      const exports = {};
-      moduleCache[moduleName] = exports;
-      modules[moduleName](exports, require);
-      return moduleCache[moduleName];
+      const module = { exports: {} };
+      fn(localRequire, module, module.exports);
+      return module.exports
     }
-    require(entry);
-  }
-  start({ modules, entry });
+    require(0);
+  })(${moduleMap});
   `
 }
 
 function bundle(graph) {
   const flattened = flattenModules(graph)
   const moduleMap = createModuleMap(flattened)
-  const bundledCode = addRuntime(moduleMap, graph.filePath)
+  const bundledCode = genCode(moduleMap)
   return [{ name: 'bundle.js', content: bundledCode }]
 }
 
